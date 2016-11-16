@@ -1,2 +1,3 @@
-# indiavis
-Visualising India
+# Visualising Examples
+
+Visualising Examples

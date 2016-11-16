@@ -1,0 +1,10 @@
+name: "Visualising Examples"
+description: "Data Visualisation work by Amit Kapoor"
+
+port: 4005
+
+permalink: pretty
+
+collections:
+  chapters:
+    output: true
