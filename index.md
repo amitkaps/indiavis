@@ -15,24 +15,39 @@ data:
   url: data/money.csv
   format:
     type: csv
+
+transform:
+  filter:
+      field: Type
+      equal: Notes
+
 mark: area
+
 encoding:
   x:
     timeUnit: year
     field: Year
     type: temporal
+    axis:
+      format: %Y
+      labelAngle: 0
+      title: Year
+      titleFontSize: 14
   y:
-    aggregate: sum
     field: Value
     type: quantitative
+    aggregate: sum
+    axis:
+      format: %
+      title: Share of Notes
+      titleFontSize: 14
 
   color:
     field: Currency
     type: nominal
     scale:
-      range: category20b
-    sort:
-      field: Denom, Types
+      range: ["#9087A8", "#BEA58A", "#819C74", "#AE8B80", "#E58275", "#958087", "#979B9B", "#AEA98E", "#EB8D8C"]
+
 config:
   cell:
     width: 800
@@ -41,6 +56,53 @@ config:
     stacked: normalize
 ```
 
+```vis
+data:
+  url: data/money.csv
+  format:
+    type: csv
+
+transform:
+  filter:
+      field: Type
+      equal: Notes
+
+mark: area
+
+encoding:
+  x:
+    timeUnit: year
+    field: Year
+    type: temporal
+    axis:
+      format: %Y
+      labelAngle: 0
+      title: Year
+      titleFontSize: 14
+  y:
+    field: Quantity
+    type: quantitative
+    aggregate: sum
+    axis:
+      format: %
+      title: Share of Notes
+      titleFontSize: 14
+
+  color:
+    field: Currency
+    type: nominal
+    scale:
+      range: ["#9087A8", "#BEA58A", "#819C74", "#AE8B80", "#E58275", "#958087", "#979B9B", "#AEA98E", "#EB8D8C"]
+
+config:
+  cell:
+    width: 800
+    height: 400
+  mark:
+    stacked: normalize
+```
+
+
 Another one
 
 ```vis
@@ -48,7 +110,14 @@ data:
   url: data/money.csv
   format:
     type: csv
+
+transform:
+  filter:
+      field: Type
+      equal: Notes
+
 mark: area
+
 encoding:
   x:
     timeUnit: year
@@ -62,7 +131,8 @@ encoding:
     field: Currency
     type: nominal
     scale:
-      range: category20b
+      range: ["#9087A8", "#BEA58A", "#819C74", "#AE8B80", "#E58275", "#958087", "#979B9B", "#AEA98E", "#EB8D8C"]
+
 config:
   cell:
     width: 800
