@@ -41,7 +41,7 @@ encoding:
 
 config:
   cell:
-    width: 800
+    width: 600
     height: 400
 ```
 
