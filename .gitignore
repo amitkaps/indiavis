@@ -1,2 +1,4 @@
 _site
 .Rproj
+.RHistory
+.DS_Store

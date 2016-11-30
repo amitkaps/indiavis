@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: relative;
+    width: 800px;
+  }
+
+  .node {
+    border: solid 2px grey;
+    font: 10px sans-serif;
+    line-height: 12px;
+    overflow: hidden;
+    position: absolute;
+    text-indent: 2px;
+  }
+
+</style>
+
+<script src="/lib/d3.v3.min.js" charset="utf-8"></script>
+
+<script>
+
+
+d3.csv("/data/notes2015.csv", function(data) {
+  console.log(data);
+
+  var dataByYear = d3.nest()
+  .key(function(d) { return d.year; })
+  .entries(data);
+
+  var tree = {
+      key: "2015",
+      values: [
+          { denom: "0001", money:    3.09 },
+          { denom: "0002", money:    8.53 },
+          { denom: "0005", money:   36.80 },
+          { denom: "0010", money:  320.15 },
+          { denom: "0020", money:   98.47 },
+          { denom: "0050", money:  194.50 },
+          { denom: "0100", money: 1577.83 },
+          { denom: "0500", money: 7853.75 },
+          { denom: "1000", money: 6325.68 }
+      ]
+  };
+
+  console.log(JSON.stringify(dataByYear[0]));
+  console.log(JSON.stringify(tree));
+
+
+  var margin = {top: 10, right: 10, bottom: 10, left: 10},
+      width = 800 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
+
+      color = d3.scale.ordinal()
+          .domain(["0001", "0002", "0005", "0010", "0020",
+                  "0050", "0100", "0500", "1000"])
+          .range(["#9087A8", "#BEA58A", "#819C74", "#AE8B80", "#E58275",
+                  "#958087", "#979B9B", "#AEA98E", "#EB8D8C"]);
+
+  var treemap = d3.layout.treemap()
+      .size([width, height])
+      .sticky(true)
+      .value(function(d) { return d.money; })
+      .children(function(d) {return d.values});
+
+  var div = d3.select("body").append("div")
+      .style("position", "relative")
+      .style("width", (width + margin.left + margin.right) + "px")
+      .style("height", (height + margin.top + margin.bottom) + "px")
+      .style("left", margin.left + "px")
+      .style("top", margin.top + "px");
+
+  var node = div.datum(dataByYear[0]).selectAll(".node")
+      .data(treemap.nodes)
+    .enter().append("div")
+      .attr("class", "node")
+      .call(position)
+      .style("background-color", function(d){ return d.denom ? color(d.denom) : '#fff' ;})
+      .style("background-image", function(d){
+        return d.denom ? "url('/assets/img/" + d.denom + "_small.jpg')" : "None" ;})
+      .style("background-position", "center")
+      .style("opacity", 1)
+      .text(function(d) { return d.children ? null : d.denom; })
+
+  function position() {
+    this.style("left", function(d) { return d.x + "px"; })
+        .style("top", function(d) { return d.y + "px"; })
+        .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
+        .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
+  }
+
+});
+
+</script>

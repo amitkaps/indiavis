@@ -98,6 +98,10 @@ h5, code { font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
         font-size: 1.125rem;
         line-height: 1.6; }
 
+#input{
+  display: none;
+}
+
 @media screen and (max-width: 1024px) {
           h5 { float: none;
                width: 100%}
