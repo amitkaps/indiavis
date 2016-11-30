@@ -44,9 +44,11 @@ window.onload = function () {
       width = 800 - margin.left - margin.right,
       height = 500 - margin.top - margin.bottom;
 
-      color = d3.scale.category10()
+      color = d3.scale.ordinal()
           .domain(["0001", "0002", "0005", "0010", "0020",
                   "0050", "0100", "0500", "1000"])
+          .range(["#9087A8", "#BEA58A", "#819C74", "#AE8B80", "#E58275",
+                  "#958087", "#979B9B", "#AEA98E", "#EB8D8C"]);
 
   var treemap = d3.layout.treemap()
       .size([width, height])
