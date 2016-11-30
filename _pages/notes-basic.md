@@ -42,7 +42,7 @@ encoding:
 config:
   cell:
     width: 650
-    height: 500
+    height: 450
 ```
 
 </textarea>
