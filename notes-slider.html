@@ -5,7 +5,7 @@
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
-    width: 600px;
+    width: 700px;
   }
 
   form {
@@ -26,11 +26,11 @@
   .year-label {
     position: relative;
     font: 500 72px "Helvetica Neue";
-    color: #777;
+    color: #555;
   }
 
   input[type="range"]{
-    width: 450px;
+    width: 550px;
   }
 
 
@@ -41,8 +41,6 @@
   <input type="range" min="1977" max="2015" value="2015" id="years"
   	step="1" list="yearslist">
   <label> 2015 </label>
-  <output for="years" onforminput="value = years.valueAsNumber;"></output>
-
   <datalist class="range-labels" id="yearslist">
   	<option>1977</option>
   	<option>1980</option>
@@ -67,8 +65,8 @@ d3.csv("/data/notesWide.csv", function(data) {
   /*console.log(JSON.stringify(dataByYear));*/
 
   var margin = {top: 50, right: 10, bottom: 10, left: 10},
-      width = 600 - margin.left - margin.right,
-      height = 400 - margin.top - margin.bottom;
+      width = 700 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
       color = d3.scale.ordinal()
           .domain(["0001", "0002", "0005", "0010", "0020",

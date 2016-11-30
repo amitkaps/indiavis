@@ -43,8 +43,8 @@ encoding:
 
 config:
   cell:
-    width: 600
-    height: 400
+    width: 650
+    height: 500
   mark:
     stacked: normalize
 ```

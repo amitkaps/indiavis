@@ -5,7 +5,7 @@
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
-    width: 600px;
+    width: 700px;
   }
 
   .node {
@@ -46,13 +46,10 @@ d3.csv("/data/notes2015.csv", function(data) {
       ]
   };
 
-  console.log(JSON.stringify(dataByYear[0]));
-  console.log(JSON.stringify(tree));
-
 
   var margin = {top: 10, right: 10, bottom: 10, left: 10},
-      width = 600 - margin.left - margin.right,
-      height = 400 - margin.top - margin.bottom;
+      width = 700 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
       color = d3.scale.ordinal()
           .domain(["0001", "0002", "0005", "0010", "0020",

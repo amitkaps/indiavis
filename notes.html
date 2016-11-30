@@ -5,13 +5,14 @@
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
-    width: 600px;
+    width: 700px;
   }
 
   form {
     position: absolute;
     left: 10px;
     top: 10px;
+    font-size: 12px;
   }
 
   .node {
@@ -26,21 +27,53 @@
   .year-label {
     position: relative;
     font: 500 72px "Helvetica Neue";
-    color: #777;
+    color: #555;
+  }
+
+  .source-label {
+    position: relative;
+    font: 12px "Helvetica Neue";
+    color: #555;
+  }
+
+  #play {
+    position: relative;
+    font: 12px "Helvetica Neue";
+    color: #888;
+    width: 120px;
+    color:  #222;
+    background-color: #eee;
+    padding: 8px;
+    text-align: center;
+  }
+
+  #play:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  #play:visited {
+    background-color: #000;
   }
 
   input[type="range"]{
-    width: 450px;
+    width: 550px;
+  }
+
+  p {
+    line-height: 0.4;
+    font-size: 16px;
   }
 
 </style>
 <form>
+  <p> <strong> The Color of Notes </strong> </p>
+  <p> <small> Watch the growth of ₹500 and ₹1000 notes over 38 years (in ₹ Billion)</small> </p>
   <label for="years">Years:</label>
   <label for="years">1977</label>
   <input type="range" min="1977" max="2015" value="2015" id="years"
   	step="1" list="yearslist">
   <label> 2015 </label>
-  <a id="play">Play</a>
  <datalist class="range-labels" id="yearslist">
   	<option>1977</option>
   	<option>1980</option>
@@ -64,9 +97,9 @@ d3.csv("/data/notesWide.csv", function(data) {
   .entries(data);
 
   // Set the area and scales
-  var margin = {top: 50, right: 10, bottom: 10, left: 10},
-      width = 600 - margin.left - margin.right,
-      height = 400 - margin.top - margin.bottom;
+  var margin = {top: 100, right: 10, bottom: 10, left: 10},
+      width = 700 - margin.left - margin.right,
+      height = 500 - margin.top - margin.bottom;
 
       color = d3.scale.ordinal()
           .domain(["0001", "0002", "0005", "0010", "0020",
@@ -116,6 +149,20 @@ d3.csv("/data/notesWide.csv", function(data) {
       .style("left", width - 165 +"px")
       .text(document.getElementById('years').value);
 
+  // Add the source label
+  var source = div.append("div")
+        .attr("class", "source-label")
+        .style("top", height - 80 +"px")
+        .style("left", 0 +"px")
+        .text("Source: RBI - Handbook of Statistics on Indian Economy, 2016 ");
+
+  // Add the animation link
+  var animation = div.append("div")
+        .attr("id", "play")
+        .style("top", - 170 +"px")
+        .style("left", width - 130 +"px")
+        .text("Play Animation");
+
   // Update the Tree from one year to another...
   function updateTree(year) {
     var j = "Y" + year;
@@ -150,7 +197,7 @@ d3.csv("/data/notesWide.csv", function(data) {
         }
    };
 
-   d3.timer(playAnimation(), interval);
+ d3.timer(playAnimation(), interval);
 
 
  // Update the tree on each change in slider
@@ -159,7 +206,7 @@ d3.csv("/data/notesWide.csv", function(data) {
   });
 
   // Play the animation form 1977 to 2015
-  d3.selectAll("a").on("click", function change() {
+  d3.selectAll("#play").on("click", function change() {
      d3.timer(playAnimation(), interval);
   });
 
