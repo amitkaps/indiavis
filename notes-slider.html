@@ -5,12 +5,12 @@
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     position: relative;
-    width: 800px;
+    width: 600px;
   }
 
   form {
     position: absolute;
-    right: 10px;
+    left: 10px;
     top: 10px;
   }
 
@@ -25,12 +25,12 @@
 
   .year-label {
     position: relative;
-    font: 500 96px "Helvetica Neue";
-    color: #555;
+    font: 500 72px "Helvetica Neue";
+    color: #777;
   }
 
   input[type="range"]{
-    width: 650px;
+    width: 450px;
   }
 
 
@@ -67,8 +67,8 @@ d3.csv("/data/notesWide.csv", function(data) {
   /*console.log(JSON.stringify(dataByYear));*/
 
   var margin = {top: 50, right: 10, bottom: 10, left: 10},
-      width = 800 - margin.left - margin.right,
-      height = 500 - margin.top - margin.bottom;
+      width = 600 - margin.left - margin.right,
+      height = 400 - margin.top - margin.bottom;
 
       color = d3.scale.ordinal()
           .domain(["0001", "0002", "0005", "0010", "0020",
@@ -100,7 +100,7 @@ d3.csv("/data/notesWide.csv", function(data) {
         return d.denom ? "url('/assets/img/" + d.denom + "_small.jpg')" : "None" ;})
       .style("background-position", "center")
       .style("opacity", 0.9)
-      .text(function(d) { return d.children ? null : d.denom; })
+    /*  .text(function(d) { return d.children ? null : d.denom; })*/
 
   function position() {
     this.style("left", function(d) { return d.x + "px"; })
@@ -113,8 +113,8 @@ d3.csv("/data/notesWide.csv", function(data) {
   var yearlabel = div.append("div")
       .attr("class", "year-label")
       .attr("text-anchor", "end")
-      .style("top", height - 100 +"px")
-      .style("left", width - 215 +"px")
+      .style("top", height - 80 +"px")
+      .style("left", width - 165 +"px")
       .text(document.getElementById('years').value);
 
 
