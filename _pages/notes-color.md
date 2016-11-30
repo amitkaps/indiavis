@@ -39,7 +39,8 @@ encoding:
     field: denom
     type: nominal
     scale:
-      range: category10
+      range: ["#9087A8", "#BEA58A", "#819C74", "#AE8B80", "#E58275", "#958087", "#979B9B", "#AEA98E", "#EB8D8C"]
+
 config:
   cell:
     width: 600
