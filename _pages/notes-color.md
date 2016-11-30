@@ -1,7 +1,7 @@
 ---
-title: Notes - Stacked
+title: Notes - Color
 layout: visdown
-permalink: notes-stacked
+permalink: notes-color
 ---
 
 <section id="output"></section>
