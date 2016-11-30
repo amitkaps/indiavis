@@ -111,7 +111,7 @@ d3.csv("/data/notesWide.csv", function(data) {
   var treemap = d3.layout.treemap()
       .size([width, height])
       .sticky(true)
-      .value(function(d) { return d.Y2015; })
+      .value(function(d) { return d.Y1977; })
       .children(function(d) {return d.values});
 
   var div = d3.select("body").append("div")
